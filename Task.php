@@ -36,6 +36,14 @@ class Task {
         return $prepare->execute();
     }
 
+    function delete(int $id) {
+        $sql = 'DELETE FROM tasks WHERE id = :id';
+        $prepare = $this->dbh->prepare($sql);
+        $prepare->bindValue(':id', $id, PDO::PARAM_INT);
+
+        return $prepare->execute();
+    }
+
     function all() {
         $sql = 'SELECT * FROM tasks';
         $prepare = $this->dbh->prepare($sql);

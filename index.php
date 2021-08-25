@@ -32,7 +32,7 @@ $tasks = $db->all();
         <td><?= $task['done_request_date'] ?></td>
         <td><?= !$task['done_flag'] ? '未完了' : '完了' ?></td>
         <td style="border: none"><a href="edit.php?id=<?= $task['id'] ?>">編集</a></td>
-        <td style="border: none"><a href="delete.php">削除</a></td>
+        <td style="border: none"><a href="delete_confirm.php?id=<?= $task['id'] ?>">削除</a></td>
     </tr>
 <?php } ?>
 </table>
