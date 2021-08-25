@@ -25,10 +25,14 @@ $tasks = $db->all();
 <table>
     <th>タスク名</th>
     <th>完了目標</th>
-<?php foreach($tasks as $task){ ?>
+    <th>完了</th>
+<?php foreach($tasks as $task) { ?>
     <tr>
         <td><?= $task['task_name'] ?></td>
         <td><?= $task['done_request_date'] ?></td>
+        <td><?= !$task['done_flag'] ? '未完了' : '完了' ?></td>
+        <td style="border: none"><a href="edit.php?id=<?= $task['id'] ?>">編集</a></td>
+        <td style="border: none"><a href="delete.php">削除</a></td>
     </tr>
 <?php } ?>
 </table>
