@@ -14,7 +14,7 @@ if ($_POST['task_name'] == '') {
     if ($result) {
         header('Location: index.php');
     } else {
-        var_dump($result);
+        echo 'データ保存に失敗しました';
     }
 }
 

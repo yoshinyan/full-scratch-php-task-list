@@ -44,6 +44,17 @@ class Task {
         return $prepare->execute();
     }
 
+    function done_toggle(int $id) {
+        $task = $this->find($id);
+
+        $sql = 'UPDATE tasks SET done_flag = :done_flag WHERE id = :id';
+        $prepare = $this->dbh->prepare($sql);
+        $prepare->bindValue(':done_flag', $task['done_flag'] == 1 ? 0 : 1);
+        $prepare->bindValue(':id', $id, PDO::PARAM_INT);
+
+        return $prepare->execute();
+    }
+
     function all() {
         $sql = 'SELECT * FROM tasks';
         $prepare = $this->dbh->prepare($sql);

@@ -34,7 +34,7 @@ function h(string $text) : string {
     <tr>
         <td><?= h($task['task_name']) ?></td>
         <td><?= h($task['done_request_date']) ?></td>
-        <td><?= !$task['done_flag'] ? '未完了' : '完了' ?></td>
+        <td><a href="done_toggle.php?id=<?= $task['id'] ?>"><?= !$task['done_flag'] ? '未完了' : '完了' ?></a></td>
         <td style="border: none"><a href="edit.php?id=<?= $task['id'] ?>">編集</a></td>
         <td style="border: none"><a href="delete_confirm.php?id=<?= $task['id'] ?>">削除</a></td>
     </tr>
