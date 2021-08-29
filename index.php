@@ -1,7 +1,15 @@
 <?php
 require_once 'Task.php';
 $db = new Task();
-$tasks = $db->all();
+
+if (isset($_GET['done']) && $_GET['done'] == '1') {
+    $tasks = $db->scopeDoneFlag(true);
+} elseif (isset($_GET['done']) && $_GET['done'] == '0') {
+    $tasks = $db->scopeDoneFlag(false);
+} else {
+    $tasks = $db->all();
+}
+
 
 function h(string $text) : string {
     return htmlspecialchars($text, ENT_QUOTES, "UTF-8");
@@ -26,6 +34,9 @@ function h(string $text) : string {
 <a href="new.php">タスク追加</a>
 <br>
 <br>
+<a href="index.php">全て</a>
+<a href="index.php?done=1">完了のみ</a>
+<a href="index.php?done=0">未完了のみ</a>
 <table>
     <th>タスク名</th>
     <th>完了目標</th>

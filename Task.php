@@ -72,6 +72,15 @@ class Task {
         return $prepare->fetch();
     }
 
+    function scopeDoneFlag(bool $done_flag) {
+        $sql = 'SELECT * FROM tasks where done_flag = :done_flag';
+        $prepare = $this->dbh->prepare($sql);
+        $prepare->bindValue(':done_flag', $done_flag);
+        $prepare->execute();
+
+        return $prepare->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     function lastId() {
         $sql = 'SELECT * FROM tasks ORDER BY id DESC LIMIT 1';
         $prepare = $this->dbh->prepare($sql);
